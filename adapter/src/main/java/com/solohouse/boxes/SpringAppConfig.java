@@ -7,12 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-/**
- * Spring application configuration, making Spring beans from services defined in application
- * module.
- *
- * @author Sven Woltmann
- */
 @SpringBootApplication
 public class SpringAppConfig {
 

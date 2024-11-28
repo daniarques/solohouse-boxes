@@ -14,6 +14,8 @@ public class BoxJpaEntity {
 
     @Id
     private Integer id;
+    
+    private String name;
 
     private String longitude;
 
