@@ -14,10 +14,10 @@ public class BoxJpaEntity {
 
     @Id
     private Integer id;
-    
+
     private String name;
 
-    private String longitude;
+    private Double longitude;
 
-    private String latitude;
+    private Double latitude;
 }

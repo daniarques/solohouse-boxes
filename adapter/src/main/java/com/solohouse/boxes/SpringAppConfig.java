@@ -1,7 +1,9 @@
 package com.solohouse.boxes;
 
+import com.solohouse.boxes.application.port.in.FindBoxesUseCase;
 import com.solohouse.boxes.application.port.in.GetBoxUseCase;
 import com.solohouse.boxes.application.port.out.persistence.BoxRepository;
+import com.solohouse.boxes.application.service.FindBoxesService;
 import com.solohouse.boxes.application.service.GetBoxService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,5 +18,10 @@ public class SpringAppConfig {
     @Bean
     GetBoxUseCase getBoxUseCase() {
         return new GetBoxService(boxRepository);
+    }
+
+    @Bean
+    FindBoxesUseCase findBoxesUseCase() {
+        return new FindBoxesService(boxRepository);
     }
 }

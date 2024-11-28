@@ -5,6 +5,7 @@ import com.solohouse.boxes.model.Box;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -19,5 +20,13 @@ public class JpaBoxRepository implements BoxRepository {
 
         final Optional<BoxJpaEntity> box = springDataBoxRepository.findById(id);
         return box.map(this.mapper::map);
+    }
+
+    @Override
+    public List<Box> findBoxesByBoundaries(final Double minLatitude, final Double maxLatitude,
+                                           final Double minLongitude, final Double maxLongitude) {
+
+        final List<BoxJpaEntity> boxes = springDataBoxRepository.findBoxesByBoundaries(minLatitude, maxLatitude, minLongitude, maxLongitude);
+        return mapper.mapBoxes(boxes);
     }
 }
