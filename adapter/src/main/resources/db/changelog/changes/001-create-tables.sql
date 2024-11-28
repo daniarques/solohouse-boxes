@@ -2,7 +2,8 @@ CREATE TABLE box (
 	id int8 NOT NULL,
 	longitude numeric NOT NULL,
 	latitude numeric NOT NULL,
-	CONSTRAINT box_pk PRIMARY KEY (id)
+	"name" varchar(500) NOT NULL,
+CONSTRAINT box_pk PRIMARY KEY (id)
 );
 
 CREATE TABLE shirt_design (

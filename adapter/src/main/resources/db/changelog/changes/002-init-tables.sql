@@ -1,6 +1,6 @@
-INSERT INTO box (id,longitude,latitude) VALUES
-	 (1,2.6274512679069817,39.58929859953975),
-	 (2,-2.949555493307151,43.26414713286044);
+INSERT INTO box (id,name,longitude,latitude) VALUES
+	 (1,'Estadio RCD Mallroca',2.6274512679069817,39.58929859953975),
+	 (2,'Estadio Athletic Bilbao',-2.949555493307151,43.26414713286044);
 INSERT INTO public.shirt_design (id,team,"style",image_url) VALUES
 	 (1,'RCD Mallorca','Principal','https://tienda.rcdmallorca.es/cdn/shop/files/CamOfi1.jpg?v=1726227233&width=700'),
 	 (2,'RCD Mallorca','Secundaria','https://tienda.rcdmallorca.es/cdn/shop/files/DSC9869_0ba25b2d-146f-42ec-a053-aefa2ffa8f3f.jpg?v=1720686741&width=700'),

@@ -7,8 +7,10 @@ import lombok.Getter;
 @Getter
 @Builder
 public class Box {
-    
+
     int id;
+
+    String name;
 
     BoxLocation location;
 }
