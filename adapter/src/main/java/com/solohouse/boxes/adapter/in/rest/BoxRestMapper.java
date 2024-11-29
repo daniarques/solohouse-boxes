@@ -24,6 +24,7 @@ public interface BoxRestMapper {
 
     List<BoxWithShirtsWebModel> mapToBoxesWithShirts(List<Box> box);
 
+    @Mapping(target = "id", source = "shirtDesign.id")
     @Mapping(target = "team", source = "shirtDesign.teamName")
     @Mapping(target = "style", source = "shirtDesign.style")
     @Mapping(target = "imageUrl", source = "shirtDesign.imageUrl")
