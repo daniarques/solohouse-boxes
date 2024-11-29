@@ -1,5 +1,7 @@
 package com.solohouse.boxes.adapter.in.rest;
 
+import com.solohouse.boxes.adapter.in.rest.model.BoxWebModel;
+import com.solohouse.boxes.adapter.in.rest.model.BoxWithShirtsWebModel;
 import com.solohouse.boxes.application.port.in.FindBoxesUseCase;
 import com.solohouse.boxes.application.port.in.GetBoxUseCase;
 import com.solohouse.boxes.model.Box;
@@ -15,7 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/boxes")
 @RequiredArgsConstructor
-public class GetBoxController {
+public class BoxController {
 
     private final GetBoxUseCase getBoxUseCase;
     private final FindBoxesUseCase findBoxesUseCase;
@@ -40,12 +42,12 @@ public class GetBoxController {
             @ApiResponse(responseCode = "200", description = "Boxes found")
     })
     @GetMapping
-    public List<BoxWebModel> findBoxes(@RequestParam("minLatitude") @NonNull final Double minLatitude,
-                                       @RequestParam("maxLatitude") @NonNull final Double maxLatitude,
-                                       @RequestParam("minLongitude") @NonNull final Double minLongitude,
-                                       @RequestParam("maxLongitude") @NonNull final Double maxLongitude) {
+    public List<BoxWithShirtsWebModel> findBoxes(@RequestParam("minLatitude") @NonNull final Double minLatitude,
+                                                 @RequestParam("maxLatitude") @NonNull final Double maxLatitude,
+                                                 @RequestParam("minLongitude") @NonNull final Double minLongitude,
+                                                 @RequestParam("maxLongitude") @NonNull final Double maxLongitude) {
 
         final List<Box> boxes = findBoxesUseCase.findBoxes(minLatitude, maxLatitude, minLongitude, maxLongitude);
-        return boxRestMapper.mapBoxes(boxes);
+        return boxRestMapper.mapToBoxesWithShirts(boxes);
     }
 }

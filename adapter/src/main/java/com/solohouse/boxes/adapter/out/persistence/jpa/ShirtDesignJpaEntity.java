@@ -10,20 +10,20 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Table(name = "box")
+@Table(name = "shirt_design")
 @Getter
 @Setter
-public class BoxJpaEntity {
+public class ShirtDesignJpaEntity {
 
     @Id
     private Integer id;
 
-    private String name;
+    private String team;
 
-    private Double longitude;
+    private String style;
 
-    private Double latitude;
+    private String image_url;
 
-    @OneToMany(mappedBy = "box")
+    @OneToMany(mappedBy = "shirtDesign")
     private List<BoxStockJpaEntity> stock;
 }

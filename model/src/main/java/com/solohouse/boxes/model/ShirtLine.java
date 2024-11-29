@@ -5,13 +5,11 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class ShirtDesign {
+public class ShirtLine {
 
-    int id;
+    ShirtDesign shirtDesign;
 
-    String teamName;
+    int amount;
 
-    String style;
-
-    String imageUrl;
+    double price;
 }

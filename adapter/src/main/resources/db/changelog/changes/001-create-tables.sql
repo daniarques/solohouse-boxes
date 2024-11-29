@@ -19,6 +19,7 @@ CREATE TABLE box_stock (
 	box_id int8 NOT NULL,
 	available_amount int4 NOT NULL,
 	real_amount int4 NOT NULL,
+	price numeric NOT NULL,
 	CONSTRAINT box_stock_pk PRIMARY KEY (shirt_design_id, box_id),
 	CONSTRAINT box_stock_box_fk FOREIGN KEY (box_id) REFERENCES box(id),
 	CONSTRAINT box_stock_shirt_design_fk FOREIGN KEY (shirt_design_id) REFERENCES shirt_design(id)

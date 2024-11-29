@@ -13,7 +13,7 @@ import java.util.Optional;
 public class JpaBoxRepository implements BoxRepository {
 
     private final JpaSpringDataBoxRepository springDataBoxRepository;
-    private final BoxPersistenceMapper mapper;
+    private final PersistenceMapper mapper;
 
     @Override
     public Optional<Box> findById(final int id) {

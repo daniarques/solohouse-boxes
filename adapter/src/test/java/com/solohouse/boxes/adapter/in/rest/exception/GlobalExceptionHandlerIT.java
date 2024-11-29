@@ -1,7 +1,7 @@
 package com.solohouse.boxes.adapter.in.rest.exception;
 
 
-import com.solohouse.boxes.adapter.in.rest.GetBoxController;
+import com.solohouse.boxes.adapter.in.rest.BoxController;
 import com.solohouse.boxes.application.port.in.InvalidParameterException;
 import com.solohouse.boxes.application.port.in.NotFoundException;
 import com.solohouse.boxes.application.service.GetBoxService;
@@ -17,7 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(controllers = GetBoxController.class)
+@WebMvcTest(controllers = BoxController.class)
 class GlobalExceptionHandlerIT {
 
     private static final int BOX_ID = 1;
