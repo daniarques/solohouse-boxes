@@ -1,6 +1,5 @@
 package com.solohouse.boxes.adapter.out.transaction;
 
-import com.solohouse.boxes.application.port.out.persistence.InvalidDataException;
 import com.solohouse.boxes.application.port.out.transaction.TransactionalService;
 import lombok.AllArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -15,11 +14,11 @@ public class TransactionalServiceImpl implements TransactionalService {
     private final TransactionalExecutor transactionalExecutor;
 
     @Override
-    public <T> T executeSafely(final Supplier<T> supplier) {
+    public <T> T executeSafely(final Supplier<T> supplier, final RuntimeException exceptionOnFail) {
         try {
             return transactionalExecutor.execute(supplier);
         } catch (final DataIntegrityViolationException e) {
-            throw new InvalidDataException("Unable to perform action based on present data");
+            throw exceptionOnFail;
         }
     }
 

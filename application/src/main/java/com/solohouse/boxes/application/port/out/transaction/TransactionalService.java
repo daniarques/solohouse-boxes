@@ -4,6 +4,6 @@ import java.util.function.Supplier;
 
 public interface TransactionalService {
 
-    <T> T executeSafely(Supplier<T> supplier);
+    <T> T executeSafely(Supplier<T> supplier, RuntimeException exceptionOnFail);
 
 }

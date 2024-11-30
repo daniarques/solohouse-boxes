@@ -4,6 +4,7 @@ import com.solohouse.boxes.application.port.in.CreatePurchaseUseCase;
 import com.solohouse.boxes.application.port.in.InvalidParameterException;
 import com.solohouse.boxes.application.port.out.persistence.BoxRepository;
 import com.solohouse.boxes.application.port.out.persistence.EntityNotFoundException;
+import com.solohouse.boxes.application.port.out.persistence.InvalidDataException;
 import com.solohouse.boxes.application.port.out.persistence.PurchaseRepository;
 import com.solohouse.boxes.application.port.out.transaction.TransactionalService;
 import com.solohouse.boxes.model.Purchase;
@@ -23,7 +24,7 @@ public class CreatePurchaseService implements CreatePurchaseUseCase {
         transactionalService.executeSafely(() -> {
             this.decreaseShirtAmountAndCreatePurchase(boxId, shirtDesignId, userId);
             return null;
-        });
+        }, new InvalidDataException(buildErrorMessage(boxId, shirtDesignId)));
     }
 
     private void decreaseShirtAmountAndCreatePurchase(final Integer boxId, final Integer shirtDesignId, final Integer userId) {
@@ -37,7 +38,7 @@ public class CreatePurchaseService implements CreatePurchaseUseCase {
         try {
             this.boxRepository.decreaseShirtDesignAmountFromBox(boxId, shirtDesignId);
         } catch (final EntityNotFoundException e) {
-            throw new InvalidParameterException(format("ShirtDesign %s not available for Box %s", shirtDesignId, boxId));
+            throw new InvalidParameterException(buildErrorMessage(boxId, shirtDesignId));
         }
     }
 
@@ -48,5 +49,10 @@ public class CreatePurchaseService implements CreatePurchaseUseCase {
                 .shirtDesignId(shirtDesignId)
                 .userId(userId)
                 .build();
+    }
+
+    private String buildErrorMessage(final Integer boxId, final Integer shirtDesignId) {
+
+        return format("ShirtDesign %s not available for Box %s", shirtDesignId, boxId);
     }
 }
