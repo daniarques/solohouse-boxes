@@ -1,0 +1,46 @@
+package com.solohouse.boxes.application.service;
+
+import com.solohouse.boxes.application.port.in.InvalidParameterException;
+import com.solohouse.boxes.application.port.in.NotFoundException;
+import com.solohouse.boxes.application.port.in.PickPurchaseUseCase;
+import com.solohouse.boxes.application.port.out.persistence.PurchaseRepository;
+import com.solohouse.boxes.model.Purchase;
+import lombok.RequiredArgsConstructor;
+
+import static java.lang.String.format;
+
+@RequiredArgsConstructor
+public class PickPurchaseService implements PickPurchaseUseCase {
+
+    private final PurchaseRepository purchaseRepository;
+
+    @Override
+    public void pickPurchase(final Integer purchaseId, final Integer userId) {
+
+        final Purchase purchase = purchaseRepository.getById(purchaseId)
+                .orElseThrow(() -> this.buildNotFoundException(purchaseId));
+
+        if (!purchase.getUserId().equals(userId)) {
+            throw this.buildNotFoundException(purchaseId);
+        }
+        if (purchase.getPicked()) {
+            throw new InvalidParameterException("Purchase already picked");
+        }
+
+        purchaseRepository.save(this.buildPurchaseWithPickedFlag(purchase));
+    }
+
+    private Purchase buildPurchaseWithPickedFlag(final Purchase purchase) {
+
+        return purchase.toBuilder()
+                .picked(true)
+                .build();
+    }
+
+    private NotFoundException buildNotFoundException(final Integer purchaseId) {
+
+        return new NotFoundException(format("Purchase with id %s not found", purchaseId));
+    }
+
+
+}

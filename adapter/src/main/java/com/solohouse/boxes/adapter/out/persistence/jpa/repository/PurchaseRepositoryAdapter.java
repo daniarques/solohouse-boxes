@@ -7,6 +7,8 @@ import com.solohouse.boxes.model.Purchase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 @RequiredArgsConstructor
 public class PurchaseRepositoryAdapter implements PurchaseRepository {
@@ -16,9 +18,17 @@ public class PurchaseRepositoryAdapter implements PurchaseRepository {
 
 
     @Override
-    public void create(final Purchase purchase) {
+    public Optional<Purchase> getById(final Integer purchaseId) {
+
+        return jpaSpringDataPurchaseRepository.findById(purchaseId)
+                .map(mapper::map);
+    }
+
+    @Override
+    public Purchase save(final Purchase purchase) {
 
         final PurchaseJpaEntity purchaseJpaEntity = this.mapper.map(purchase);
-        this.jpaSpringDataPurchaseRepository.save(purchaseJpaEntity);
+        final PurchaseJpaEntity savedPurchase = this.jpaSpringDataPurchaseRepository.save(purchaseJpaEntity);
+        return mapper.map(savedPurchase);
     }
 }

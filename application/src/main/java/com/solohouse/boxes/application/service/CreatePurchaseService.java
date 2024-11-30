@@ -20,17 +20,16 @@ public class CreatePurchaseService implements CreatePurchaseUseCase {
     private final TransactionalService transactionalService;
 
     @Override
-    public void createPurchase(final Integer boxId, final Integer shirtDesignId, final Integer userId) {
-        transactionalService.executeSafely(() -> {
-            this.decreaseShirtAmountAndCreatePurchase(boxId, shirtDesignId, userId);
-            return null;
-        }, new InvalidDataException(buildErrorMessage(boxId, shirtDesignId)));
+    public int createPurchase(final Purchase purchase) {
+        return transactionalService.executeSafely(
+                () -> this.decreaseShirtAmountAndCreatePurchase(purchase),
+                new InvalidDataException(this.buildErrorMessage(purchase.getBoxId(), purchase.getShirtDesignId())));
     }
 
-    private void decreaseShirtAmountAndCreatePurchase(final Integer boxId, final Integer shirtDesignId, final Integer userId) {
+    private int decreaseShirtAmountAndCreatePurchase(final Purchase purchase) {
 
-        this.decreaseShirtDesignAmountFromBox(boxId, shirtDesignId);
-        this.purchaseRepository.create(this.buildPurchase(boxId, shirtDesignId, userId));
+        this.decreaseShirtDesignAmountFromBox(purchase.getBoxId(), purchase.getShirtDesignId());
+        return this.purchaseRepository.save(purchase).getId();
     }
 
     private void decreaseShirtDesignAmountFromBox(final Integer boxId, final Integer shirtDesignId) {
@@ -38,17 +37,8 @@ public class CreatePurchaseService implements CreatePurchaseUseCase {
         try {
             this.boxRepository.decreaseShirtDesignAmountFromBox(boxId, shirtDesignId);
         } catch (final EntityNotFoundException e) {
-            throw new InvalidParameterException(buildErrorMessage(boxId, shirtDesignId));
+            throw new InvalidParameterException(this.buildErrorMessage(boxId, shirtDesignId));
         }
-    }
-
-    private Purchase buildPurchase(final Integer boxId, final Integer shirtDesignId, final Integer userId) {
-
-        return Purchase.builder()
-                .boxId(boxId)
-                .shirtDesignId(shirtDesignId)
-                .userId(userId)
-                .build();
     }
 
     private String buildErrorMessage(final Integer boxId, final Integer shirtDesignId) {

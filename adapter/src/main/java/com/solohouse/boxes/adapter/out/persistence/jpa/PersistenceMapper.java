@@ -31,4 +31,6 @@ public interface PersistenceMapper {
     List<Box> mapBoxes(List<BoxJpaEntity> box);
 
     PurchaseJpaEntity map(Purchase purchase);
+
+    Purchase map(PurchaseJpaEntity purchaseEntity);
 }

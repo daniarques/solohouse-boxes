@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Value;
 
 @Value
-@Builder
+@Builder(toBuilder = true)
 public class Purchase {
 
     Integer id;
@@ -15,5 +15,7 @@ public class Purchase {
     Integer boxId;
 
     Integer userId;
+
+    Boolean picked;
 
 }

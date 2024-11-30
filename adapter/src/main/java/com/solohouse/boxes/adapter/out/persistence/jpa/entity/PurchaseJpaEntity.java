@@ -30,7 +30,7 @@ public class PurchaseJpaEntity {
     private Integer userId;
 
     @Builder.Default
-    private Boolean picked = false;
+    private boolean picked = false;
 
     @Column(name = "created_at")
     @Builder.Default

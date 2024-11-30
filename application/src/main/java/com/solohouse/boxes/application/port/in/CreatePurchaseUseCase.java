@@ -1,7 +1,9 @@
 package com.solohouse.boxes.application.port.in;
 
+import com.solohouse.boxes.model.Purchase;
+
 public interface CreatePurchaseUseCase {
 
-    void createPurchase(Integer boxId, Integer shirtDesignId, Integer userId);
+    int createPurchase(Purchase purchase);
 
 }
