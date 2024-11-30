@@ -32,8 +32,8 @@ public class BoxController {
     @GetMapping("/{boxId}")
     public BoxWebModel getBox(@PathVariable("boxId") @NonNull final Integer boxId) {
 
-        final Box box = getBoxUseCase.getBox(boxId);
-        return boxRestMapper.map(box);
+        final Box box = this.getBoxUseCase.getBox(boxId);
+        return this.boxRestMapper.map(box);
     }
 
     @Operation(summary = "Find boxes in area",
@@ -47,7 +47,7 @@ public class BoxController {
                                                  @RequestParam("minLongitude") @NonNull final Double minLongitude,
                                                  @RequestParam("maxLongitude") @NonNull final Double maxLongitude) {
 
-        final List<Box> boxes = findBoxesUseCase.findBoxes(minLatitude, maxLatitude, minLongitude, maxLongitude);
-        return boxRestMapper.mapToBoxesWithShirts(boxes);
+        final List<Box> boxes = this.findBoxesUseCase.findBoxes(minLatitude, maxLatitude, minLongitude, maxLongitude);
+        return this.boxRestMapper.mapToBoxesWithShirts(boxes);
     }
 }

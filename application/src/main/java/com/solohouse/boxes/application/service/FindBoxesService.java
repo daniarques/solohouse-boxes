@@ -16,6 +16,6 @@ public class FindBoxesService implements FindBoxesUseCase {
     public List<Box> findBoxes(final Double minLatitude, final Double maxLatitude,
                                final Double minLongitude, final Double maxLongitude) {
 
-        return boxRepository.findBoxesByBoundaries(minLatitude, maxLatitude, minLongitude, maxLongitude);
+        return this.boxRepository.findBoxesByBoundaries(minLatitude, maxLatitude, minLongitude, maxLongitude);
     }
 }

@@ -34,7 +34,7 @@ public class BoxRepositoryAdapter implements BoxRepository {
                                            final Double minLongitude, final Double maxLongitude) {
 
         final List<BoxJpaEntity> boxes = this.jpaSpringDataBoxRepository.findBoxesByBoundaries(minLatitude, maxLatitude, minLongitude, maxLongitude);
-        return mapper.mapBoxes(boxes);
+        return this.mapper.mapBoxes(boxes);
     }
 
 

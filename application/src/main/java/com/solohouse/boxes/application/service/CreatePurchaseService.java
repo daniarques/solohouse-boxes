@@ -21,7 +21,7 @@ public class CreatePurchaseService implements CreatePurchaseUseCase {
 
     @Override
     public int createPurchase(final Purchase purchase) {
-        return transactionalService.executeSafely(
+        return this.transactionalService.executeSafely(
                 () -> this.decreaseShirtAmountAndCreatePurchase(purchase),
                 new InvalidDataException(this.buildErrorMessage(purchase.getBoxId(), purchase.getShirtDesignId())));
     }

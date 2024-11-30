@@ -50,7 +50,7 @@ class CreatePurchaseServiceTest {
                 .build();
         given(this.purchaseRepository.save(expectedPurchase)).willReturn(PURCHASE);
 
-        final int expectedId = createPurchaseService.createPurchase(PURCHASE);
+        final int expectedId = this.createPurchaseService.createPurchase(PURCHASE);
 
 
         then(this.boxRepository).should().decreaseShirtDesignAmountFromBox(BOX_ID, SHIRT_DESIGN_ID);
@@ -62,7 +62,7 @@ class CreatePurchaseServiceTest {
         doThrow(new EntityNotFoundException())
                 .when(this.boxRepository).decreaseShirtDesignAmountFromBox(BOX_ID, SHIRT_DESIGN_ID);
 
-        assertThatThrownBy(() -> createPurchaseService.createPurchase(PURCHASE))
+        assertThatThrownBy(() -> this.createPurchaseService.createPurchase(PURCHASE))
                 .isInstanceOf(InvalidParameterException.class)
                 .hasMessage("ShirtDesign 2 not available for Box 1");
 

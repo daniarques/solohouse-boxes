@@ -20,8 +20,8 @@ public class PurchaseRepositoryAdapter implements PurchaseRepository {
     @Override
     public Optional<Purchase> getById(final Integer purchaseId) {
 
-        return jpaSpringDataPurchaseRepository.findById(purchaseId)
-                .map(mapper::map);
+        return this.jpaSpringDataPurchaseRepository.findById(purchaseId)
+                .map(this.mapper::map);
     }
 
     @Override
@@ -29,6 +29,6 @@ public class PurchaseRepositoryAdapter implements PurchaseRepository {
 
         final PurchaseJpaEntity purchaseJpaEntity = this.mapper.map(purchase);
         final PurchaseJpaEntity savedPurchase = this.jpaSpringDataPurchaseRepository.save(purchaseJpaEntity);
-        return mapper.map(savedPurchase);
+        return this.mapper.map(savedPurchase);
     }
 }

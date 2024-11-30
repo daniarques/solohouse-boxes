@@ -16,7 +16,7 @@ public class TransactionalServiceImpl implements TransactionalService {
     @Override
     public <T> T executeSafely(final Supplier<T> supplier, final RuntimeException exceptionOnFail) {
         try {
-            return transactionalExecutor.execute(supplier);
+            return this.transactionalExecutor.execute(supplier);
         } catch (final DataIntegrityViolationException e) {
             throw exceptionOnFail;
         }

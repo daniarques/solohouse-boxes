@@ -16,7 +16,7 @@ public class GetBoxService implements GetBoxUseCase {
     @Override
     public Box getBox(final int id) {
 
-        return boxRepository.findById(id)
+        return this.boxRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(format("Box with id %s not found", id)));
     }
 }

@@ -29,21 +29,21 @@ public class SpringAppConfig {
 
     @Bean
     GetBoxUseCase getBoxUseCase() {
-        return new GetBoxService(boxRepository);
+        return new GetBoxService(this.boxRepository);
     }
 
     @Bean
     FindBoxesUseCase findBoxesUseCase() {
-        return new FindBoxesService(boxRepository);
+        return new FindBoxesService(this.boxRepository);
     }
 
     @Bean
     CreatePurchaseUseCase createPurchaseUseCase() {
-        return new CreatePurchaseService(boxRepository, purchaseRepository, transactionalService);
+        return new CreatePurchaseService(this.boxRepository, this.purchaseRepository, this.transactionalService);
     }
 
     @Bean
     PickPurchaseUseCase pickPurchaseUseCase() {
-        return new PickPurchaseService(purchaseRepository);
+        return new PickPurchaseService(this.purchaseRepository);
     }
 }
