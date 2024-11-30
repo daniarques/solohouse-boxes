@@ -1,5 +1,6 @@
-package com.solohouse.boxes.adapter.out.persistence.jpa;
+package com.solohouse.boxes.adapter.out.persistence.jpa.repository;
 
+import com.solohouse.boxes.adapter.out.persistence.jpa.entity.BoxJpaEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

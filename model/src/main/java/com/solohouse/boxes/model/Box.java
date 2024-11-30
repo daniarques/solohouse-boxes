@@ -2,11 +2,11 @@ package com.solohouse.boxes.model;
 
 
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Value;
 
 import java.util.List;
 
-@Getter
+@Value
 @Builder
 public class Box {
 

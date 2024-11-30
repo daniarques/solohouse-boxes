@@ -1,18 +1,21 @@
-package com.solohouse.boxes.adapter.out.persistence.jpa;
+package com.solohouse.boxes.adapter.out.persistence.jpa.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
-@Entity
-@Table(name = "shirt_design")
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder(toBuilder = true)
 @Getter
 @Setter
+@EqualsAndHashCode
+@Entity
+@Table(name = "shirt_design")
 public class ShirtDesignJpaEntity {
 
     @Id

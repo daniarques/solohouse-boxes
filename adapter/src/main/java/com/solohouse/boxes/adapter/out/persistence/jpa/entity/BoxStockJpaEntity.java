@@ -1,13 +1,16 @@
-package com.solohouse.boxes.adapter.out.persistence.jpa;
+package com.solohouse.boxes.adapter.out.persistence.jpa.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Entity
-@Table(name = "box_stock")
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder(toBuilder = true)
 @Getter
 @Setter
+@EqualsAndHashCode
+@Entity
+@Table(name = "box_stock")
 public class BoxStockJpaEntity {
 
     @Id

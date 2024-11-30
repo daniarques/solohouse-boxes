@@ -10,4 +10,6 @@ public interface BoxRepository {
     Optional<Box> findById(int id);
 
     List<Box> findBoxesByBoundaries(Double minLatitude, Double maxLatitude, Double minLongitude, Double maxLongitude);
+
+    void decreaseShirtDesignAmountFromBox(int boxId, int shirtDesignId) throws EntityNotFoundException;
 }

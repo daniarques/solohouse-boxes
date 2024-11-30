@@ -1,6 +1,11 @@
 package com.solohouse.boxes.adapter.out.persistence.jpa;
 
+import com.solohouse.boxes.adapter.out.persistence.jpa.entity.BoxJpaEntity;
+import com.solohouse.boxes.adapter.out.persistence.jpa.entity.BoxStockJpaEntity;
+import com.solohouse.boxes.adapter.out.persistence.jpa.entity.PurchaseJpaEntity;
+import com.solohouse.boxes.adapter.out.persistence.jpa.entity.ShirtDesignJpaEntity;
 import com.solohouse.boxes.model.Box;
+import com.solohouse.boxes.model.Purchase;
 import com.solohouse.boxes.model.ShirtDesign;
 import com.solohouse.boxes.model.ShirtLine;
 import org.mapstruct.Mapper;
@@ -25,4 +30,5 @@ public interface PersistenceMapper {
 
     List<Box> mapBoxes(List<BoxJpaEntity> box);
 
+    PurchaseJpaEntity map(Purchase purchase);
 }

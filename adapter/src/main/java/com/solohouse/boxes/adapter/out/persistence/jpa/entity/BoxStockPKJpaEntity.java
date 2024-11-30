@@ -1,20 +1,23 @@
-package com.solohouse.boxes.adapter.out.persistence.jpa;
+package com.solohouse.boxes.adapter.out.persistence.jpa.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 
-@Embeddable
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder(toBuilder = true)
 @Getter
 @Setter
+@EqualsAndHashCode
+@Embeddable
 public class BoxStockPKJpaEntity implements Serializable {
 
     @Column(name = "shirt_design_id")
     private Integer shirtDesignId;
 
-    @Column(name = "box_d")
+    @Column(name = "box_id")
     private Integer boxId;
 }
