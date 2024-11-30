@@ -4,10 +4,7 @@ import com.solohouse.boxes.adapter.out.persistence.jpa.entity.BoxJpaEntity;
 import com.solohouse.boxes.adapter.out.persistence.jpa.entity.BoxStockJpaEntity;
 import com.solohouse.boxes.adapter.out.persistence.jpa.entity.PurchaseJpaEntity;
 import com.solohouse.boxes.adapter.out.persistence.jpa.entity.ShirtDesignJpaEntity;
-import com.solohouse.boxes.model.Box;
-import com.solohouse.boxes.model.Purchase;
-import com.solohouse.boxes.model.ShirtDesign;
-import com.solohouse.boxes.model.ShirtLine;
+import com.solohouse.boxes.model.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -33,4 +30,9 @@ public interface PersistenceMapper {
     PurchaseJpaEntity map(Purchase purchase);
 
     Purchase map(PurchaseJpaEntity purchaseEntity);
+
+    @Mapping(target = "page", source = "number")
+    @Mapping(target = "content", source = "content", defaultExpression = "java(java.util.List.of())")
+    Page<Purchase> map(org.springframework.data.domain.Page<PurchaseJpaEntity> purchaseEntity);
+
 }

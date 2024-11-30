@@ -7,6 +7,8 @@ import com.solohouse.boxes.application.port.out.persistence.PurchaseRepository;
 import com.solohouse.boxes.model.Purchase;
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalDateTime;
+
 import static java.lang.String.format;
 
 @RequiredArgsConstructor
@@ -34,6 +36,7 @@ public class PickPurchaseService implements PickPurchaseUseCase {
 
         return purchase.toBuilder()
                 .picked(true)
+                .pickedAt(LocalDateTime.now())
                 .build();
     }
 

@@ -3,8 +3,7 @@ package com.solohouse.boxes.adapter.out.persistence.jpa.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.sql.Timestamp;
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -34,9 +33,9 @@ public class PurchaseJpaEntity {
 
     @Column(name = "created_at")
     @Builder.Default
-    private Timestamp createdAt = Timestamp.from(Instant.now());
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @Column(name = "picked_at")
-    private Timestamp pickedAt;
+    private LocalDateTime pickedAt;
 
 }

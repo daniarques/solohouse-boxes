@@ -1,10 +1,15 @@
 package com.solohouse.boxes.adapter.in.rest;
 
+import com.solohouse.boxes.adapter.in.rest.model.CreatePurchaseWebModel;
+import com.solohouse.boxes.adapter.in.rest.model.PageWebModel;
 import com.solohouse.boxes.adapter.in.rest.model.PurchaseWebModel;
 import com.solohouse.boxes.application.port.in.CreatePurchaseUseCase;
 import com.solohouse.boxes.application.port.in.PickPurchaseUseCase;
+import com.solohouse.boxes.application.port.in.SearchPurchasesUseCase;
+import com.solohouse.boxes.model.Page;
 import com.solohouse.boxes.model.Purchase;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
@@ -16,9 +21,29 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class PurchaseController {
 
+    private final SearchPurchasesUseCase searchPurchasesUseCase;
     private final CreatePurchaseUseCase createPurchaseUseCase;
     private final PickPurchaseUseCase pickPurchaseUseCase;
     private final PurchaseRestMapper purchaseRestMapper;
+
+    @Operation(summary = "Find user's purchases",
+            description = "Find user's purchased shirts")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Flag added"),
+            @ApiResponse(responseCode = "400", description = "Unable to add flag"),
+            @ApiResponse(responseCode = "404", description = "Not found")
+    })
+    @GetMapping
+    public PageWebModel<PurchaseWebModel> searchPurchases(
+            //TODO: user sent via header token with OAuth
+            @RequestParam("user") @NonNull final Integer userId,
+            @RequestParam(name = "picked", required = false) @Parameter(description = "If sent, will filter only purchases by picked value") final Boolean picked,
+            @RequestParam("size") @NonNull Integer pageSize,
+            @RequestParam("page") @NonNull Integer pageNumber) {
+
+        final Page<Purchase> purchasesPage = this.searchPurchasesUseCase.searchPurchases(userId, picked, pageSize, pageNumber);
+        return this.purchaseRestMapper.map(purchasesPage);
+    }
 
     @Operation(summary = "Purchase shirt",
             description = "Purchase a single shirt found in a particular box")
@@ -28,7 +53,7 @@ public class PurchaseController {
     })
     @PostMapping
     //TODO: user sent via header token with OAuth
-    public Integer createPurchase(@RequestBody @NonNull final PurchaseWebModel request) {
+    public Integer createPurchase(@RequestBody @NonNull final CreatePurchaseWebModel request) {
 
         final Purchase purchase = this.purchaseRestMapper.map(request);
         return this.createPurchaseUseCase.createPurchase(purchase);
@@ -49,4 +74,5 @@ public class PurchaseController {
 
         this.pickPurchaseUseCase.pickPurchase(purchaseId, userId);
     }
+
 }

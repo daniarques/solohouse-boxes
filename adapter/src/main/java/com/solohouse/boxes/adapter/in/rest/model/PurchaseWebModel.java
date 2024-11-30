@@ -1,6 +1,7 @@
 package com.solohouse.boxes.adapter.in.rest.model;
 
-import org.springframework.lang.NonNull;
+import java.time.LocalDateTime;
 
-public record PurchaseWebModel(@NonNull Integer boxId, @NonNull Integer shirtId, @NonNull Integer userId) {
+public record PurchaseWebModel(Integer id, Integer boxId, Integer shirtId, Integer userId, Boolean picked,
+                               LocalDateTime createdAt, LocalDateTime pickedAt) {
 }
