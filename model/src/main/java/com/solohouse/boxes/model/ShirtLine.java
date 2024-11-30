@@ -5,13 +5,11 @@ import lombok.Value;
 
 @Value
 @Builder
-public class ShirtPurchase {
-
-    Box box;
-
-    User user;
+public class ShirtLine {
 
     ShirtDesign shirtDesign;
 
-    boolean picked;
+    int amount;
+
+    double price;
 }

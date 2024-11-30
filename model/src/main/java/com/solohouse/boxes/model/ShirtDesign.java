@@ -1,9 +1,9 @@
 package com.solohouse.boxes.model;
 
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Value;
 
-@Getter
+@Value
 @Builder
 public class ShirtDesign {
 
@@ -12,4 +12,6 @@ public class ShirtDesign {
     String teamName;
 
     String style;
+
+    String imageUrl;
 }

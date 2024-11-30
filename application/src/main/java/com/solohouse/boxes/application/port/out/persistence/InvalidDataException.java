@@ -1,9 +1,10 @@
-package com.solohouse.boxes.application.port.in;
+package com.solohouse.boxes.application.port.out.persistence;
 
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class InvalidParameterException extends RuntimeException {
+public class InvalidDataException extends RuntimeException {
+
 
     private final String message;
 

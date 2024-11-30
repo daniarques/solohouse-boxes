@@ -2,6 +2,7 @@ package com.solohouse.boxes.adapter.in.rest.exception;
 
 import com.solohouse.boxes.application.port.in.InvalidParameterException;
 import com.solohouse.boxes.application.port.in.NotFoundException;
+import com.solohouse.boxes.application.port.out.persistence.InvalidDataException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,16 @@ public class GlobalExceptionHandler {
             final HttpServletRequest request,
             final InvalidParameterException exception) {
         log.error("Invalid parameter error. {} ({}{})", exception.getCause(), request.getContextPath(), request.getServletPath());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(this.buildErrorResponse(HttpStatus.BAD_REQUEST, request, exception));
+    }
+
+    @ExceptionHandler(InvalidDataException.class)
+    protected ResponseEntity<ErrorResponse> handleInvalidDataException(
+            final HttpServletRequest request,
+            final InvalidDataException exception) {
+        log.error("Invalid data error. {} ({}{})", exception.getCause(), request.getContextPath(), request.getServletPath());
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(this.buildErrorResponse(HttpStatus.BAD_REQUEST, request, exception));

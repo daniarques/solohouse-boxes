@@ -15,6 +15,6 @@ class ApplicationTest {
 
     @Test
     void when_application_starts_context_loads() {
-        assertThat(applicationContext).isNotNull();
+        assertThat(this.applicationContext).isNotNull();
     }
 }

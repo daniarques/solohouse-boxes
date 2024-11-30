@@ -2,9 +2,11 @@ package com.solohouse.boxes.model;
 
 
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Value;
 
-@Getter
+import java.util.List;
+
+@Value
 @Builder
 public class Box {
 
@@ -13,4 +15,6 @@ public class Box {
     String name;
 
     BoxLocation location;
+
+    List<ShirtLine> shirts;
 }
