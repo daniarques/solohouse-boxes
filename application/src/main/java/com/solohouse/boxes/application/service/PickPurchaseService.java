@@ -17,7 +17,7 @@ public class PickPurchaseService implements PickPurchaseUseCase {
     @Override
     public void pickPurchase(final Integer purchaseId, final Integer userId) {
 
-        final Purchase purchase = purchaseRepository.getById(purchaseId)
+        final Purchase purchase = this.purchaseRepository.getById(purchaseId)
                 .orElseThrow(() -> this.buildNotFoundException(purchaseId));
 
         if (!purchase.getUserId().equals(userId)) {
@@ -27,7 +27,7 @@ public class PickPurchaseService implements PickPurchaseUseCase {
             throw new InvalidParameterException("Purchase already picked");
         }
 
-        purchaseRepository.save(this.buildPurchaseWithPickedFlag(purchase));
+        this.purchaseRepository.save(this.buildPurchaseWithPickedFlag(purchase));
     }
 
     private Purchase buildPurchaseWithPickedFlag(final Purchase purchase) {
