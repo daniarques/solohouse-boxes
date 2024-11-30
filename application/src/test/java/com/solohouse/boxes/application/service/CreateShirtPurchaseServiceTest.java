@@ -20,7 +20,7 @@ import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.never;
 
 @ExtendWith(MockitoExtension.class)
-class CreatePurchaseServiceTest {
+class CreateShirtPurchaseServiceTest {
 
     public static final int BOX_ID = 1;
     public static final int SHIRT_DESIGN_ID = 2;
@@ -39,7 +39,7 @@ class CreatePurchaseServiceTest {
     private PurchaseRepository purchaseRepository;
 
     @InjectMocks
-    private CreatePurchaseService createPurchaseService;
+    private CreateShirtShirtPurchaseService createShirtPurchaseService;
 
     @Test
     void when_createPurchase_should_create() throws EntityNotFoundException {
@@ -50,7 +50,7 @@ class CreatePurchaseServiceTest {
                 .build();
         given(this.purchaseRepository.save(expectedPurchase)).willReturn(PURCHASE);
 
-        final int expectedId = this.createPurchaseService.createPurchase(PURCHASE);
+        final int expectedId = this.createShirtPurchaseService.createPurchase(PURCHASE);
 
 
         then(this.boxRepository).should().decreaseShirtDesignAmountFromBox(BOX_ID, SHIRT_DESIGN_ID);
@@ -62,7 +62,7 @@ class CreatePurchaseServiceTest {
         doThrow(new EntityNotFoundException())
                 .when(this.boxRepository).decreaseShirtDesignAmountFromBox(BOX_ID, SHIRT_DESIGN_ID);
 
-        assertThatThrownBy(() -> this.createPurchaseService.createPurchase(PURCHASE))
+        assertThatThrownBy(() -> this.createShirtPurchaseService.createPurchase(PURCHASE))
                 .isInstanceOf(InvalidParameterException.class)
                 .hasMessage("ShirtDesign 2 not available for Box 1");
 

@@ -1,6 +1,6 @@
 package com.solohouse.boxes.application.service;
 
-import com.solohouse.boxes.application.port.in.CreatePurchaseUseCase;
+import com.solohouse.boxes.application.port.in.CreateShirtPurchaseUseCase;
 import com.solohouse.boxes.application.port.in.InvalidParameterException;
 import com.solohouse.boxes.application.port.out.persistence.BoxRepository;
 import com.solohouse.boxes.application.port.out.persistence.EntityNotFoundException;
@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 import static java.lang.String.format;
 
 @RequiredArgsConstructor
-public class CreatePurchaseService implements CreatePurchaseUseCase {
+public class CreateShirtShirtPurchaseService implements CreateShirtPurchaseUseCase {
 
     private final BoxRepository boxRepository;
     private final PurchaseRepository purchaseRepository;

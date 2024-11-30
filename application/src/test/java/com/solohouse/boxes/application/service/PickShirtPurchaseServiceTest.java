@@ -19,7 +19,7 @@ import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.never;
 
 @ExtendWith(MockitoExtension.class)
-class PickPurchaseServiceTest {
+class PickShirtPurchaseServiceTest {
 
     public static final int PURCHASE_ID = 123;
     public static final int USER_ID = 111;
@@ -36,14 +36,14 @@ class PickPurchaseServiceTest {
     private PurchaseRepository purchaseRepository;
 
     @InjectMocks
-    private PickPurchaseService pickPurchaseService;
+    private PickShirtShirtPurchaseService pickShirtPurchaseService;
 
     @Test
     void when_pickPurchase_should_save() {
 
         given(this.purchaseRepository.getById(PURCHASE_ID)).willReturn(Optional.of(PURCHASE_NON_PICKED));
 
-        this.pickPurchaseService.pickPurchase(PURCHASE_ID, USER_ID);
+        this.pickShirtPurchaseService.pickPurchase(PURCHASE_ID, USER_ID);
 
         then(this.purchaseRepository).should().save(PURCHASE_PICKED);
     }
@@ -53,7 +53,7 @@ class PickPurchaseServiceTest {
 
         given(this.purchaseRepository.getById(PURCHASE_ID)).willReturn(Optional.empty());
 
-        assertThatThrownBy(() -> this.pickPurchaseService.pickPurchase(PURCHASE_ID, USER_ID))
+        assertThatThrownBy(() -> this.pickShirtPurchaseService.pickPurchase(PURCHASE_ID, USER_ID))
                 .isInstanceOf(NotFoundException.class)
                 .hasMessage("Purchase with id 123 not found");
 
@@ -68,7 +68,7 @@ class PickPurchaseServiceTest {
                 .picked(false)
                 .build()));
 
-        assertThatThrownBy(() -> this.pickPurchaseService.pickPurchase(PURCHASE_ID, USER_ID))
+        assertThatThrownBy(() -> this.pickShirtPurchaseService.pickPurchase(PURCHASE_ID, USER_ID))
                 .isInstanceOf(NotFoundException.class)
                 .hasMessage("Purchase with id 123 not found");
 
@@ -80,7 +80,7 @@ class PickPurchaseServiceTest {
 
         given(this.purchaseRepository.getById(PURCHASE_ID)).willReturn(Optional.of(PURCHASE_PICKED));
 
-        assertThatThrownBy(() -> this.pickPurchaseService.pickPurchase(PURCHASE_ID, USER_ID))
+        assertThatThrownBy(() -> this.pickShirtPurchaseService.pickPurchase(PURCHASE_ID, USER_ID))
                 .isInstanceOf(InvalidParameterException.class)
                 .hasMessage("Purchase already picked");
 

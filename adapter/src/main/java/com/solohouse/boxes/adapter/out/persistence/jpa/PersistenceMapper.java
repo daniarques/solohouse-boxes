@@ -27,6 +27,7 @@ public interface PersistenceMapper {
 
     List<Box> mapBoxes(List<BoxJpaEntity> box);
 
+    @Mapping(target = "createdAt", ignore = true)
     PurchaseJpaEntity map(Purchase purchase);
 
     Purchase map(PurchaseJpaEntity purchaseEntity);

@@ -2,7 +2,7 @@ package com.solohouse.boxes.application.service;
 
 import com.solohouse.boxes.application.port.in.InvalidParameterException;
 import com.solohouse.boxes.application.port.in.NotFoundException;
-import com.solohouse.boxes.application.port.in.PickPurchaseUseCase;
+import com.solohouse.boxes.application.port.in.PickShirtPurchaseUseCase;
 import com.solohouse.boxes.application.port.out.persistence.PurchaseRepository;
 import com.solohouse.boxes.model.Purchase;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 import static java.lang.String.format;
 
 @RequiredArgsConstructor
-public class PickPurchaseService implements PickPurchaseUseCase {
+public class PickShirtShirtPurchaseService implements PickShirtPurchaseUseCase {
 
     private final PurchaseRepository purchaseRepository;
 

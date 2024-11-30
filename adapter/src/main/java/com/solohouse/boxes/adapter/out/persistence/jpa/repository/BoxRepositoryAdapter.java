@@ -1,5 +1,6 @@
 package com.solohouse.boxes.adapter.out.persistence.jpa.repository;
 
+import com.solohouse.boxes.adapter.out.persistence.jpa.LazyPersistenceMapper;
 import com.solohouse.boxes.adapter.out.persistence.jpa.PersistenceMapper;
 import com.solohouse.boxes.adapter.out.persistence.jpa.entity.BoxJpaEntity;
 import com.solohouse.boxes.adapter.out.persistence.jpa.entity.BoxStockJpaEntity;
@@ -20,13 +21,13 @@ public class BoxRepositoryAdapter implements BoxRepository {
     private final JpaSpringDataBoxRepository jpaSpringDataBoxRepository;
     private final JpaSpringDataBoxStockRepository jpaSpringDataBoxStockRepository;
     private final PersistenceMapper mapper;
+    private final LazyPersistenceMapper lazyMapper;
 
     @Override
     public Optional<Box> findById(final int id) {
 
-        //TODO: is fetching eager
         final Optional<BoxJpaEntity> box = this.jpaSpringDataBoxRepository.findById(id);
-        return box.map(this.mapper::map);
+        return box.map(this.lazyMapper::mapLazy);
     }
 
     @Override
@@ -41,7 +42,6 @@ public class BoxRepositoryAdapter implements BoxRepository {
     @Override
     public void decreaseShirtDesignAmountFromBox(final int boxId, final int shirtDesignId) throws EntityNotFoundException {
 
-        //TODO: is fetching eager
         final BoxStockJpaEntity boxStock = this.jpaSpringDataBoxStockRepository.findById(this.buildPK(boxId, shirtDesignId))
                 .orElseThrow(EntityNotFoundException::new);
 

@@ -25,12 +25,12 @@ public class BoxStockJpaEntity {
 
     private double price;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("boxId")
     @JoinColumn(name = "box_id")
     private BoxJpaEntity box;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("shirtDesignId")
     @JoinColumn(name = "shirt_design_id")
     private ShirtDesignJpaEntity shirtDesign;

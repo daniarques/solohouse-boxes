@@ -32,17 +32,17 @@ public class SpringAppConfig {
     }
 
     @Bean
-    CreatePurchaseUseCase createPurchaseUseCase() {
-        return new CreatePurchaseService(this.boxRepository, this.purchaseRepository, this.transactionalService);
+    CreateShirtPurchaseUseCase createPurchaseUseCase() {
+        return new CreateShirtShirtPurchaseService(this.boxRepository, this.purchaseRepository, this.transactionalService);
     }
 
     @Bean
-    PickPurchaseUseCase pickPurchaseUseCase() {
-        return new PickPurchaseService(this.purchaseRepository);
+    PickShirtPurchaseUseCase pickPurchaseUseCase() {
+        return new PickShirtShirtPurchaseService(this.purchaseRepository);
     }
 
     @Bean
-    SearchPurchasesUseCase searchPurchasesUseCase() {
-        return new SearchPurchasesService(this.purchaseRepository);
+    SearchShirtPurchasesUseCase searchPurchasesUseCase() {
+        return new SearchShirtShirtPurchasesService(this.purchaseRepository);
     }
 }
