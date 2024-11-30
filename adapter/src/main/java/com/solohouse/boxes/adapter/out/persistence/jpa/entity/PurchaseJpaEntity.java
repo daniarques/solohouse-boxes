@@ -21,13 +21,13 @@ public class PurchaseJpaEntity {
     private Integer id;
 
     @Column(name = "shirt_design_id")
-    private Integer shirtDesignId;
+    private int shirtDesignId;
 
     @Column(name = "box_id")
-    private Integer boxId;
+    private int boxId;
 
     @Column(name = "user_id")
-    private Integer userId;
+    private int userId;
 
     @Builder.Default
     private boolean picked = false;

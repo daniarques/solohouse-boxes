@@ -18,12 +18,12 @@ public class BoxStockJpaEntity {
     BoxStockPKJpaEntity id;
 
     @Column(name = "available_amount")
-    private Integer availableAmount;
+    private int availableAmount;
 
     @Column(name = "real_amount")
-    private Integer realAmount;
+    private int realAmount;
 
-    private Double price;
+    private double price;
 
     @ManyToOne
     @MapsId("boxId")

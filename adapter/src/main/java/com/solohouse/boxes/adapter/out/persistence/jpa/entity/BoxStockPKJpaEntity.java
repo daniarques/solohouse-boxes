@@ -16,8 +16,8 @@ import java.io.Serializable;
 public class BoxStockPKJpaEntity implements Serializable {
 
     @Column(name = "shirt_design_id")
-    private Integer shirtDesignId;
+    private int shirtDesignId;
 
     @Column(name = "box_id")
-    private Integer boxId;
+    private int boxId;
 }

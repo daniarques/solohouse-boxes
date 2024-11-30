@@ -5,6 +5,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.*;
+import org.springframework.lang.NonNull;
 
 import java.util.List;
 
@@ -21,10 +22,13 @@ public class ShirtDesignJpaEntity {
     @Id
     private Integer id;
 
+    @NonNull
     private String team;
 
+    @NonNull
     private String style;
 
+    @NonNull
     private String image_url;
 
     @OneToMany(mappedBy = "shirtDesign")
