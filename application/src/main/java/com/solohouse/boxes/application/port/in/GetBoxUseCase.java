@@ -4,5 +4,5 @@ import com.solohouse.boxes.model.Box;
 
 public interface GetBoxUseCase {
 
-    Box getBox(int id);
+    Box getBox(int id, final Boolean expand);
 }

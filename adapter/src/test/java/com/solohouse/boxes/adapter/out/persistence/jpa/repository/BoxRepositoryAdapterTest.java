@@ -89,7 +89,7 @@ class BoxRepositoryAdapterTest {
 
         given(this.jpaSpringDataBoxRepository.findById(ID)).willReturn(Optional.of(BOX_ENTITY));
 
-        final Optional<Box> actual = this.boxRepositoryAdapter.findById(ID);
+        final Optional<Box> actual = this.boxRepositoryAdapter.findById(ID, true);
 
         final Box expectedBox = Box.builder()
                 .id(ID)

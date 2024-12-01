@@ -24,10 +24,10 @@ public class BoxRepositoryAdapter implements BoxRepository {
     private final LazyPersistenceMapper lazyMapper;
 
     @Override
-    public Optional<Box> findById(final int id) {
+    public Optional<Box> findById(final int id, final boolean expand) {
 
         final Optional<BoxJpaEntity> box = this.jpaSpringDataBoxRepository.findById(id);
-        return box.map(this.lazyMapper::mapLazy);
+        return box.map(expand ? this.mapper::map : this.lazyMapper::mapLazy);
     }
 
     @Override

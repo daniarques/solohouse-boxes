@@ -15,6 +15,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface BoxRestMapper {
 
+    @Mapping(target = "availableShirts", source = "shirts", defaultExpression = "java(java.util.List.of())")
     BoxWebModel map(Box box);
 
     BoxLocationWebModel map(BoxLocation boxLocation);
