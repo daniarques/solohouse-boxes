@@ -4,7 +4,7 @@ INSERT INTO box (id,name,longitude,latitude) VALUES
 INSERT INTO public.shirt_design (id,team,"style",image_url) VALUES
 	 (1,'RCD Mallorca','Principal','https://tienda.rcdmallorca.es/cdn/shop/files/CamOfi1.jpg?v=1726227233&width=700'),
 	 (2,'RCD Mallorca','Secundaria','https://tienda.rcdmallorca.es/cdn/shop/files/DSC9869_0ba25b2d-146f-42ec-a053-aefa2ffa8f3f.jpg?v=1720686741&width=700'),
-	 (3,'RCD Mallorca','Camiseta 2010-2011','https://cdn.footballkitarchive.com/2021/08/05/cxiXBHF03bYHXrX.jpg'),
+	 (3,'RCD Mallorca','Camiseta 2010-2011','https://casualfootballshirts.co.uk/cdn/shop/files/0E2B7C2B-8850-4645-8756-186D07B7479A.jpg?v=1700841193&width=713'),
 	 (4,'Athletic Club','Principal','https://shop.athletic-club.eus/cdn/shop/files/TM6250_071_RACINGRED_BRILLIANTWHITE_01_430x.jpg?v=1720517219'),
 	 (5,'Athletic Club','Secundaria','https://shop.athletic-club.eus/cdn/shop/files/TM6258_SURFTHEWEB_01_430x.jpg?v=1715588982');
 INSERT INTO box_stock (shirt_design_id,box_id,available_amount,real_amount, price) VALUES

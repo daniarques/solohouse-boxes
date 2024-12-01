@@ -26,7 +26,7 @@ public class BoxRepositoryAdapter implements BoxRepository {
     @Override
     public Optional<Box> findById(final int id, final boolean expand) {
 
-        final Optional<BoxJpaEntity> box = this.jpaSpringDataBoxRepository.findById(id);
+        final Optional<BoxJpaEntity> box = expand ? this.jpaSpringDataBoxRepository.findByIdEager(id) : this.jpaSpringDataBoxRepository.findById(id);
         return box.map(expand ? this.mapper::map : this.lazyMapper::mapLazy);
     }
 
