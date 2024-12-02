@@ -20,7 +20,7 @@ public interface BoxRestMapper {
 
     BoxLocationWebModel map(BoxLocation boxLocation);
 
-    @Mapping(target = "availableShirts", source = "shirts")
+    @Mapping(target = "availableShirts", source = "shirts", defaultExpression = "java(java.util.List.of())")
     BoxWithShirtsWebModel mapToBoxWithShirts(Box box);
 
     List<BoxWithShirtsWebModel> mapToBoxesWithShirts(List<Box> box);

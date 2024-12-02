@@ -28,6 +28,13 @@ public interface JpaSpringDataBoxRepository extends JpaRepository<BoxJpaEntity, 
             SELECT b FROM BoxJpaEntity b
             WHERE b.latitude between ?1 and ?2
             and b.longitude between ?3 and ?4""")
+    List<BoxJpaEntity> findBoxesByBoundariesEager(Double minLatitude, Double maxLatitude,
+                                                  Double minLongitude, Double maxLongitude);
+
+    @Query("""
+            SELECT b FROM BoxJpaEntity b
+            WHERE b.latitude between ?1 and ?2
+            and b.longitude between ?3 and ?4""")
     List<BoxJpaEntity> findBoxesByBoundaries(Double minLatitude, Double maxLatitude,
                                              Double minLongitude, Double maxLongitude);
 
