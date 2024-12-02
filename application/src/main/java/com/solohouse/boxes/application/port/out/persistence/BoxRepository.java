@@ -7,9 +7,9 @@ import java.util.Optional;
 
 public interface BoxRepository {
 
-    Optional<Box> findById(int id);
+    Optional<Box> findById(int id, final boolean expand);
 
-    List<Box> findBoxesByBoundaries(Double minLatitude, Double maxLatitude, Double minLongitude, Double maxLongitude);
+    List<Box> findBoxesByBoundaries(Double minLatitude, Double maxLatitude, Double minLongitude, Double maxLongitude, boolean expand);
 
     void decreaseShirtDesignAmountFromBox(int boxId, int shirtDesignId) throws EntityNotFoundException;
 }

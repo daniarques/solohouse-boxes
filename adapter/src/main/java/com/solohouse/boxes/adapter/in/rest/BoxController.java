@@ -30,9 +30,10 @@ public class BoxController {
             @ApiResponse(responseCode = "404", description = "Box not found")
     })
     @GetMapping("/{boxId}")
-    public BoxWebModel getBox(@PathVariable("boxId") @NonNull final Integer boxId) {
+    public BoxWebModel getBox(@PathVariable("boxId") @NonNull final Integer boxId,
+                              @RequestParam(required = false) Boolean expand) {
 
-        final Box box = this.getBoxUseCase.getBox(boxId);
+        final Box box = this.getBoxUseCase.getBox(boxId, expand);
         return this.boxRestMapper.map(box);
     }
 
@@ -45,9 +46,10 @@ public class BoxController {
     public List<BoxWithShirtsWebModel> findBoxes(@RequestParam("minLatitude") @NonNull final Double minLatitude,
                                                  @RequestParam("maxLatitude") @NonNull final Double maxLatitude,
                                                  @RequestParam("minLongitude") @NonNull final Double minLongitude,
-                                                 @RequestParam("maxLongitude") @NonNull final Double maxLongitude) {
+                                                 @RequestParam("maxLongitude") @NonNull final Double maxLongitude,
+                                                 @RequestParam(value = "expand", required = false) @NonNull final Boolean expand) {
 
-        final List<Box> boxes = this.findBoxesUseCase.findBoxes(minLatitude, maxLatitude, minLongitude, maxLongitude);
+        final List<Box> boxes = this.findBoxesUseCase.findBoxes(minLatitude, maxLatitude, minLongitude, maxLongitude, expand);
         return this.boxRestMapper.mapToBoxesWithShirts(boxes);
     }
 }

@@ -31,7 +31,7 @@ class GlobalExceptionHandlerIT {
     @Test
     void when_apiCallThrowsInvalidParameterException_should_return404() throws Exception {
 
-        given(this.getBoxService.getBox(BOX_ID)).willThrow(new InvalidParameterException("msg"));
+        given(this.getBoxService.getBox(BOX_ID, expand)).willThrow(new InvalidParameterException("msg"));
 
         this.mockMvc.perform(get("/boxes/1"))
                 .andDo(print())
@@ -45,7 +45,7 @@ class GlobalExceptionHandlerIT {
     @Test
     void when_apiCallThrowsNotFoundException_should_return404() throws Exception {
 
-        given(this.getBoxService.getBox(BOX_ID)).willThrow(new NotFoundException("msg"));
+        given(this.getBoxService.getBox(BOX_ID, expand)).willThrow(new NotFoundException("msg"));
 
         this.mockMvc.perform(get("/boxes/1"))
                 .andDo(print())

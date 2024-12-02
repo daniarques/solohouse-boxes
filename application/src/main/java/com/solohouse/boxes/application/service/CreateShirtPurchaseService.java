@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 import static java.lang.String.format;
 
 @RequiredArgsConstructor
-public class CreateShirtShirtPurchaseService implements CreateShirtPurchaseUseCase {
+public class CreateShirtPurchaseService implements CreateShirtPurchaseUseCase {
 
     private final BoxRepository boxRepository;
     private final PurchaseRepository purchaseRepository;

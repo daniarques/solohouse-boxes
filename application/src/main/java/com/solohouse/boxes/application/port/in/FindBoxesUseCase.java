@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface FindBoxesUseCase {
 
-    List<Box> findBoxes(Double minLatitude, Double maxLatitude, Double minLongitude, Double maxLongitude);
+    List<Box> findBoxes(Double minLatitude, Double maxLatitude, Double minLongitude, Double maxLongitude, Boolean expand);
 
 }

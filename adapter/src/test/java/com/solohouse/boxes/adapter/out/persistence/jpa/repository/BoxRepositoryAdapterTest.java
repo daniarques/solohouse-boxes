@@ -89,7 +89,7 @@ class BoxRepositoryAdapterTest {
 
         given(this.jpaSpringDataBoxRepository.findById(ID)).willReturn(Optional.of(BOX_ENTITY));
 
-        final Optional<Box> actual = this.boxRepositoryAdapter.findById(ID);
+        final Optional<Box> actual = this.boxRepositoryAdapter.findById(ID, true);
 
         final Box expectedBox = Box.builder()
                 .id(ID)
@@ -107,9 +107,9 @@ class BoxRepositoryAdapterTest {
     @Test
     void when_findBoxesByBoundaries_should_returnBoxes() {
 
-        given(this.jpaSpringDataBoxRepository.findBoxesByBoundaries(MIN_LATITUDE, MAX_LATITUDE, MIN_LONGITUDE, MAX_LONGITUDE)).willReturn(List.of(BOX_ENTITY_WITH_JOINS));
+        given(this.jpaSpringDataBoxRepository.findBoxesByBoundariesEager(MIN_LATITUDE, MAX_LATITUDE, MIN_LONGITUDE, MAX_LONGITUDE)).willReturn(List.of(BOX_ENTITY_WITH_JOINS));
 
-        final List<Box> boxes = this.boxRepositoryAdapter.findBoxesByBoundaries(MIN_LATITUDE, MAX_LATITUDE, MIN_LONGITUDE, MAX_LONGITUDE);
+        final List<Box> boxes = this.boxRepositoryAdapter.findBoxesByBoundaries(MIN_LATITUDE, MAX_LATITUDE, MIN_LONGITUDE, MAX_LONGITUDE, true);
 
         final Box expectedBox = Box.builder()
                 .id(ID)

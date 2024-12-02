@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
+import static java.lang.Boolean.TRUE;
+
 @RequiredArgsConstructor
 public class FindBoxesService implements FindBoxesUseCase {
 
@@ -14,8 +16,9 @@ public class FindBoxesService implements FindBoxesUseCase {
 
     @Override
     public List<Box> findBoxes(final Double minLatitude, final Double maxLatitude,
-                               final Double minLongitude, final Double maxLongitude) {
+                               final Double minLongitude, final Double maxLongitude,
+                               final Boolean expand) {
 
-        return this.boxRepository.findBoxesByBoundaries(minLatitude, maxLatitude, minLongitude, maxLongitude);
+        return this.boxRepository.findBoxesByBoundaries(minLatitude, maxLatitude, minLongitude, maxLongitude, TRUE.equals(expand));
     }
 }

@@ -29,9 +29,19 @@ class GetBoxServiceTest {
     @Test
     void when_getBox_boxFound_should_returnBox() throws NotFoundException {
 
-        given(this.boxRepository.findById(BOX_ID)).willReturn(Optional.of(BOX));
+        given(this.boxRepository.findById(BOX_ID, true)).willReturn(Optional.of(BOX));
 
-        final Box box = this.getBoxService.getBox(BOX_ID);
+        final Box box = this.getBoxService.getBox(BOX_ID, Boolean.TRUE);
+
+        assertThat(box).isEqualTo(BOX);
+    }
+
+    @Test
+    void when_getBox_noExpand_boxFound_should_returnBox() throws NotFoundException {
+
+        given(this.boxRepository.findById(BOX_ID, false)).willReturn(Optional.of(BOX));
+
+        final Box box = this.getBoxService.getBox(BOX_ID, null);
 
         assertThat(box).isEqualTo(BOX);
     }
@@ -39,9 +49,9 @@ class GetBoxServiceTest {
     @Test
     void when_getBox_boxNotFound_should_throwNotFoundException() throws NotFoundException {
 
-        given(this.boxRepository.findById(BOX_ID)).willReturn(Optional.empty());
+        given(this.boxRepository.findById(BOX_ID, true)).willReturn(Optional.empty());
 
-        assertThatThrownBy(() -> this.getBoxService.getBox(BOX_ID))
+        assertThatThrownBy(() -> this.getBoxService.getBox(BOX_ID, Boolean.TRUE))
                 .isEqualTo(new NotFoundException("Box with id 123 not found"));
 
     }

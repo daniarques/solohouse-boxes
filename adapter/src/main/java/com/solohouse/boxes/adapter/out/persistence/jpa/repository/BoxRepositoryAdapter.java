@@ -24,18 +24,21 @@ public class BoxRepositoryAdapter implements BoxRepository {
     private final LazyPersistenceMapper lazyMapper;
 
     @Override
-    public Optional<Box> findById(final int id) {
+    public Optional<Box> findById(final int id, final boolean expand) {
 
-        final Optional<BoxJpaEntity> box = this.jpaSpringDataBoxRepository.findById(id);
-        return box.map(this.lazyMapper::mapLazy);
+        final Optional<BoxJpaEntity> box = expand ? this.jpaSpringDataBoxRepository.findByIdEager(id) : this.jpaSpringDataBoxRepository.findById(id);
+        return box.map(expand ? this.mapper::map : this.lazyMapper::map);
     }
 
     @Override
     public List<Box> findBoxesByBoundaries(final Double minLatitude, final Double maxLatitude,
-                                           final Double minLongitude, final Double maxLongitude) {
+                                           final Double minLongitude, final Double maxLongitude,
+                                           final boolean expand) {
 
-        final List<BoxJpaEntity> boxes = this.jpaSpringDataBoxRepository.findBoxesByBoundaries(minLatitude, maxLatitude, minLongitude, maxLongitude);
-        return this.mapper.mapBoxes(boxes);
+        final List<BoxJpaEntity> boxes = expand ?
+                this.jpaSpringDataBoxRepository.findBoxesByBoundariesEager(minLatitude, maxLatitude, minLongitude, maxLongitude) :
+                this.jpaSpringDataBoxRepository.findBoxesByBoundaries(minLatitude, maxLatitude, minLongitude, maxLongitude);
+        return expand ? this.mapper.mapBoxes(boxes) : this.lazyMapper.mapBoxes(boxes);
     }
 
 
