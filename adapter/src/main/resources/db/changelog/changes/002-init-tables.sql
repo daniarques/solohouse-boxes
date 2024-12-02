@@ -10,7 +10,6 @@ INSERT INTO public.shirt_design (id,team,"style",image_url) VALUES
 INSERT INTO box_stock (shirt_design_id,box_id,available_amount,real_amount, price) VALUES
 	 (1,1,10,10,25),
 	 (2,1,5,5,20),
-	 (4,1,2,2,30),
 	 (4,2,20,20,25),
 	 (5,2,8,8,20),
 	 (3,1,1,2,120);
