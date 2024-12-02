@@ -33,7 +33,7 @@ public class SpringAppConfig {
 
     @Bean
     CreateShirtPurchaseUseCase createPurchaseUseCase() {
-        return new CreateShirtShirtPurchaseService(this.boxRepository, this.purchaseRepository, this.transactionalService);
+        return new CreateShirtPurchaseService(this.boxRepository, this.purchaseRepository, this.transactionalService);
     }
 
     @Bean

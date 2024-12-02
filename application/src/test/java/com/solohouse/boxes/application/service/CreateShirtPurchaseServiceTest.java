@@ -39,7 +39,7 @@ class CreateShirtPurchaseServiceTest {
     private PurchaseRepository purchaseRepository;
 
     @InjectMocks
-    private CreateShirtShirtPurchaseService createShirtPurchaseService;
+    private CreateShirtPurchaseService createShirtPurchaseService;
 
     @Test
     void when_createPurchase_should_create() throws EntityNotFoundException {
