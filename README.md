@@ -22,3 +22,7 @@ This project follows some business logic assumptions.
 ## Pending improvements:
 
 - Add OAuth for user authentication
+
+## App structure diagram
+
+![hexagonal-architecture-modules.png](docs/hexagonal-architecture-modules.png)
